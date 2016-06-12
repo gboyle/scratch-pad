@@ -1,7 +1,8 @@
 
 #include <iostream>
+#include "sidonia-config.h"
 
 int main() {
 
-    std::cout << "Hello Sidonia...." << std::endl;
+    std::cout << "sidonia " << SIDONIA_VERSION_MAJOR << "." << SIDONIA_VERSION_MINOR << std::endl;
 }
