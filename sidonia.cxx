@@ -1,7 +1,6 @@
 
 #include <iostream>
 #include "sidonia-config.h"
-#include "somelib.h"
 
 #ifdef USE_SOMELIB
 #include "somelib.h"
