@@ -25,3 +25,11 @@
     [100%] Built target sidonia
     [scratch-pad]$ ./sidonia 
     sidonia 0.1
+
+### list currently changed files
+
+    git status
+    
+### remove all untracked directories and files
+
+    git clean -df

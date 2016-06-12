@@ -15,9 +15,16 @@ configure_file (
 # add binary directory to search path so configuration header will be found
 include_directories("${PROJECT_BINARY_DIR}")
 
-include_directories("${PROJECT_SOURCE_DIR}/somelib")
-add_subdirectory(somelib)
+
+option(USE_SOMELIB "Use somelib library implementation" ON)
+
+if (USE_SOMELIB)
+    include_directories("${PROJECT_SOURCE_DIR}/somelib")
+    add_subdirectory(somelib)
+	set(EXTRA_LIBS ${EXTRA_LIBS} somelib)
+endif (USE_SOMELIB)
+
 
 # add the executable
 add_executable(sidonia sidonia.cxx)
-target_link_libraries(sidonia somelib)
+target_link_libraries(sidonia ${EXTRA_LIBS})
