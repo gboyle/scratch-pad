@@ -28,3 +28,32 @@ endif (USE_SOMELIB)
 # add the executable
 add_executable(sidonia sidonia.cxx)
 target_link_libraries(sidonia ${EXTRA_LIBS})
+
+install (TARGETS sidonia DESTINATION bin)
+install (FILES "${PROJECT_BINARY_DIR}/sidonia-config.h" DESTINATION include)
+
+
+include(CTest)
+
+add_test(SidoniaRuns sidonia 25)
+
+add_test(SidoniaComputesDouble sidonia 25)
+set_tests_properties(SidoniaComputesDouble PROPERTIES PASS_REGULAR_EXPRESSION "25 is 5")
+
+add_test(SidoniaNegative sidonia -25)
+set_tests_properties(SidoniaNegative PROPERTIES PASS_REGULAR_EXPRESSION "-25 is 0")
+
+add_test(SidoniaSmall sidonia 0.0001)
+set_tests_properties(SidoniaSmall PROPERTIES PASS_REGULAR_EXPRESSION "0.0001 is 0")
+
+add_test(SidoniaUsage sidonia)
+set_tests_properties(SidoniaUsage PROPERTIES PASS_REGULAR_EXPRESSION "Usage:.*number")
+
+macro (do_test arg result)
+    add_test(SidoniaTest${arg} sidonia ${arg})
+    set_tests_properties(SidoniaTest${arg} PROPERTIES PASS_REGULAR_EXPRESSION ${result})
+endmacro (do_test)
+
+do_test(25 "25 is 5")
+do_test(-25 "-25 is 0")
+do_test(16 "16 is 4")
