@@ -3,3 +3,6 @@
 #define SIDONIA_VERSION_MINOR @SIDONIA_VERSION_MINOR@
 
 #cmakedefine USE_SOMELIB
+
+#cmakedefine HAVE_LOG
+#cmakedefine HAVE_EXP

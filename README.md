@@ -33,3 +33,12 @@
 ### remove all untracked directories and files
 
     git clean -df
+
+### build with optional module
+
+    mkdir out
+    cd out
+    cmake -DUSE_SOMELIB=1 ..
+    make
+    make test
+    ./sidonia
